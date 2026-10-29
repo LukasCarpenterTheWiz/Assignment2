@@ -1,0 +1,435 @@
+/* Mrs. Pac's Pizza Barn - styles for all four pages */
+
+
+/* Main colors and sizes used around the site */
+:root {
+    --red: #d62828;        
+    --red-dark: #9d0208;   
+    --yellow: #ffc93c;     
+    --cream: #fff8ec;      
+    --white: #ffffff;      
+    --black: #1b1b1b;      
+    --gray: #444444;       
+
+    --content-width: 900px;
+    --radius: 12px;        
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Basic page styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Nunito", Arial, sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--black);
+    background-color: var(--cream);
+
+    /* Helps keep the footer at the bottom on short pages */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Use the same heading font throughout the site */
+h1,
+h2,
+h3 {
+    font-family: "Lobster", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+a {
+    color: var(--red);
+}
+
+
+/* Header stays at the top when the page scrolls */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;    
+
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 32px;
+
+    background-color: var(--red);
+    color: var(--white);
+    box-shadow: var(--shadow);
+
+    /* Checkered border to match the restaurant logo */
+    border-bottom: 8px solid transparent;
+    border-image: repeating-linear-gradient(
+        90deg,
+        var(--white) 0 12px,
+        var(--red-dark) 12px 24px
+    ) 8;
+}
+
+/* Header logo */
+header img {
+    width: 64px;
+    height: 64px;
+}
+
+/* Restaurant name */
+header h1 {
+    font-size: 1.9rem;
+    color: var(--yellow);
+    text-shadow: 2px 2px 0 var(--red-dark);  /* clear, bold text */
+}
+
+
+/* Navigation links */
+nav {
+    margin-left: auto;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+}
+
+nav a {
+    display: block;
+    padding: 8px 16px;
+    border-radius: 999px;  /* pill shape */
+
+    color: var(--white);
+    font-weight: 800;
+    text-decoration: none;
+
+
+    transition: background-color 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+}
+
+/* Change the link color when hovered or focused */
+nav a:hover,
+nav a:focus-visible {
+    background-color: var(--yellow);
+    color: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+/* Highlight the current page */
+nav a[aria-current="page"] {
+    background-color: var(--red-dark);
+    box-shadow: inset 0 0 0 2px var(--yellow);
+}
+
+
+/* Center the main content with Flexbox */
+main {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+
+    padding: 40px 20px;
+}
+
+
+/* Main sections and their content */
+section {
+    width: 100%;
+    max-width: var(--content-width);
+    padding: 28px 32px;
+
+    background-color: var(--white);
+    border-top: 6px solid var(--red);
+    border-radius: var(--radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    font-size: 2rem;
+    color: var(--red);
+    margin-bottom: 10px;
+}
+
+section p {
+    color: var(--gray);
+    margin-bottom: 12px;
+}
+
+/* Images placed directly inside a section */
+section > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 6px 0 18px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Make prices stand out */
+.price {
+    font-weight: 800;
+    color: var(--red);
+}
+
+/* Arrange article cards in rows that wrap on smaller screens */
+section:has(article) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* Keep the section heading and intro above the cards */
+section:has(article) > h2,
+section:has(article) > p {
+    flex-basis: 100%;
+    margin-bottom: 0;
+}
+
+article {
+    flex: 1 1 240px;
+    padding: 18px 20px;
+
+    background-color: var(--cream);
+    border-left: 5px solid var(--yellow);
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+article:hover {
+    transform: translateY(-3px);
+}
+
+/* Keep menu photos the same shape */
+article img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+article h3 {
+    font-size: 1.4rem;
+    color: var(--red-dark);
+    margin-bottom: 6px;
+}
+
+article p {
+    margin-bottom: 8px;
+}
+
+article p:last-child {
+    margin-bottom: 0;
+}
+
+/* Lists */
+section ul {
+    padding-left: 24px;
+}
+
+section li {
+    margin-bottom: 4px;
+}
+
+section li::marker {
+    color: var(--red);
+}
+
+
+/* Homepage banner */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    border-top: none;
+    background-color: var(--black);
+    color: var(--white);
+}
+
+.hero img {
+    width: 250px;           /* keeps the logo from stretching full width */
+    max-width: 100%;
+    height: auto;
+    margin: 0 0 12px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.hero h2 {
+    color: var(--yellow);
+    font-size: 2.4rem;
+}
+
+.hero p {
+    color: #d6d6d6;
+}
+
+/* Menu link styled like a button */
+.hero a {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 12px 28px;
+    border-radius: 999px;
+
+    background-color: var(--red);
+    color: var(--white);
+    font-weight: 800;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.hero a:hover {
+    background-color: var(--yellow);
+    color: var(--red-dark);
+    transform: scale(1.05);
+}
+
+
+/* Contact page address and form */
+address {
+    font-style: normal;
+    font-weight: 700;
+    padding: 12px 16px;
+    background-color: var(--cream);
+    border-radius: 8px;
+}
+
+form {
+    max-width: 520px;
+}
+
+label {
+    display: block;
+    font-weight: 800;
+    color: var(--black);
+    margin-bottom: 4px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font: inherit;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background-color: var(--cream);
+}
+
+/* Show which form field is selected */
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--red);
+}
+
+button {
+    padding: 12px 32px;
+    font: inherit;
+    font-weight: 800;
+    color: var(--white);
+    background-color: var(--red);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--red-dark);
+}
+
+
+/* Footer uses the same colors as the header */
+footer {
+    padding: 24px 32px;
+    text-align: center;
+
+    background-color: var(--red);
+    color: var(--white);
+    box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.25);
+
+    /* Matching checkered border */
+    border-top: 8px solid transparent;
+    border-image: repeating-linear-gradient(
+        90deg,
+        var(--white) 0 12px,
+        var(--red-dark) 12px 24px
+    ) 8;
+}
+
+footer p:first-child {
+    font-weight: 800;
+    color: var(--yellow);
+}
+
+footer p {
+    margin-bottom: 4px;
+}
+
+/* Footer links */
+footer a {
+    color: var(--white);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+footer a:hover {
+    color: var(--yellow);
+    border-bottom-color: var(--yellow);
+}
+
+
+/* Adjust the layout for phones and smaller screens */
+@media (max-width: 760px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px 16px;
+    }
+
+    header img {
+        width: 44px;
+        height: 44px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: 4px;
+    }
+
+    nav a {
+        padding: 6px 12px;
+        font-size: 0.95rem;
+    }
+
+    section {
+        padding: 22px 20px;
+    }
+}
